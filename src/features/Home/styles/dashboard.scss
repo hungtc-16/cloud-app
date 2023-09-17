@@ -1,0 +1,34 @@
+.dashboard-card {
+    background-color: #fff;
+    padding: 14px 18px;
+    border-radius: 3px;
+    &.notification {
+        height: 100%;
+        background-color: #171856;
+        * {
+            color: #f4f4f4 !important;
+        }
+    }
+}
+
+.card-calendar {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 17px;
+    background-color: #edfbf9;
+    border-radius: 3px;
+    &.first {
+        background-color: #fbeded;
+    }
+    .time {
+        color: #656565;
+        font-size: 12px;
+    }
+    .document {
+        margin-bottom: 10px;
+    }
+    .card-calendar-footer {
+        border-top: 1px solid #ccc;
+        padding: 10px 0 5px 0;
+    }
+}

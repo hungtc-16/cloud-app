@@ -1,0 +1,58 @@
+#exception {
+    position: relative;
+    height: 100%;
+    .exception {
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+        line-height: 1.1;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .exception h1 {
+        font-family: 'Nunito', sans-serif;
+        font-size: 65px;
+        font-weight: 700;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        color: #6e6e6e;
+        text-transform: uppercase;
+    }
+
+    .exception h2 {
+        font-family: 'Nunito', sans-serif;
+        font-size: 21px;
+        font-weight: 400;
+        margin: 0;
+        text-transform: uppercase;
+        color: #151723;
+    }
+
+    .exception p {
+        font-family: 'Nunito', sans-serif;
+        color: #999fa5;
+        font-weight: 400;
+    }
+
+    .exception a {
+        font-family: 'Nunito', sans-serif;
+        display: inline-block;
+        font-weight: 700;
+        border-radius: 40px;
+        text-decoration: none;
+        color: #388dbc;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .exception {
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 110px;
+        }
+    }
+}

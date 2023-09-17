@@ -1,16 +1,8 @@
 {
-   "editor.formatOnSave": true,
+    "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
         "source.fixAll": true,
-        "source.organizeImports": true,
-    },
-    "terminal.integrated.shellArgs.windows": [
-        "-ExecutionPolicy",
-        "Bypass"
-    ],
-    "terminal.integrated.automationProfile.linux": {
-        "-ExecutionPolicy",
-        "Bypass"
-    },
+        "source.organizeImports": true
+    }
 }

@@ -1,59 +1,139 @@
-import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
-import { Card, Col, CountdownProps, Row, Statistic } from 'antd';
+import { Avatar, Col, List, Row } from 'antd';
+import { AiFillProject } from "react-icons/ai";
+import { BsFillCalendar2WeekFill } from "react-icons/bs";
+import { MdNotifications } from "react-icons/md";
 
-const { Countdown } = Statistic;
-
-const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Dayjs is also OK
-
-const onFinish: CountdownProps['onFinish'] = () => {
-    console.log('finished!');
-};
-
-const onChange: CountdownProps['onChange'] = (val) => {
-    if (typeof val === 'number' && 4.95 * 1000 < val && val < 5 * 1000) {
-        console.log('changed!');
-    }
-};
+import '../styles/dashboard.scss';
+const data = [
+    {
+        title: 'Ant Design Title 1',
+    },
+    {
+        title: 'Ant Design Title 2',
+    },
+    {
+        title: 'Ant Design Title 1',
+    },
+];
 const Dashboard = () => {
     return (
         <Row gutter={16}>
-            <Col span={12}>
-                <Card bordered={false}>
-                    <Statistic
-                        title="Active"
-                        value={11.28}
-                        precision={2}
-                        valueStyle={{ color: '#3f8600' }}
-                        prefix={<ArrowUpOutlined />}
-                        suffix="%"
+            <Col span={17}>
+                <div className='calendar card mb-18 dashboard-card'>
+                    <div className='header-card mb-10 space-between'>
+                        <div className='center-y'>
+                            <BsFillCalendar2WeekFill />
+                            <strong className='ms-10 mt-2'>Calendar</strong>
+                        </div>
+                        <div>
+                            <a>View all events</a>
+                        </div>
+                    </div>
+                    <Row gutter={16}>
+                        <Col span={8}>
+                            <div className='card-calendar first'>
+                                <strong>
+                                    Meeting with Ant Design
+                                </strong>
+                                <span className='time'>
+                                    12:00 - 1:00 PM
+                                </span>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At esse distinctio optio
+                                </p>
+                                <a className='document'>View Documents</a>
+                                <div className='card-calendar-footer'>
+                                    Zome - Link
+                                </div>
+                            </div>
+                        </Col >
+                        <Col span={8}>
+                            <div className='card-calendar'>
+                                <strong>
+                                    Meeting with Ant Design
+                                </strong>
+                                <span className='time'>
+                                    12:00 - 1:00 PM
+                                </span>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At esse distinctio optio
+                                </p>
+                                <a className='document'>View Documents</a>
+                                <div className='card-calendar-footer'>
+                                    Zome - Link
+                                </div>
+                            </div>
+                        </Col>
+                        <Col span={8}>
+                            <div className='card-calendar'>
+                                <strong>
+                                    Meeting with Ant Design
+                                </strong>
+                                <span className='time'>
+                                    12:00 - 1:00 PM
+                                </span>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At esse distinctio optio
+                                </p>
+                                <a className='document'>View Documents</a>
+                                <div className='card-calendar-footer'>
+                                    Zome - Link
+                                </div>
+                            </div>
+                        </Col>
+                    </Row >
+                </div >
+                <div className='dashboard-card'>
+                    <div className='header-card mb-10 space-between'>
+                        <div className='center-y'>
+                            <AiFillProject className='fz-18' />
+                            <strong className='ms-10 mt-2'>Projects</strong>
+                        </div>
+                        <div>
+                            <a>View all project</a>
+                        </div>
+                    </div>
+                    <List
+                        itemLayout="horizontal"
+                        dataSource={data}
+                        renderItem={(item, index) => (
+                            <List.Item className='flex-column flex-column-start'>
+                                <Row className='w-100'>
+                                    <Col span={12}>
+                                        <strong>Web designer</strong>
+                                        <List.Item.Meta
+                                            className='w-100 mt-10 center-y'
+                                            avatar={<Avatar src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`} />}
+                                            title={<a href="https://ant.design" className='mt-1'>{item.title}</a>}
+                                        />
+                                    </Col>
+                                </Row>
+                            </List.Item>
+                        )}
                     />
-                </Card>
+                </div>
             </Col>
-            <Col span={12}>
-                <Card bordered={false}>
-                    <Statistic
-                        title="Idle"
-                        value={9.3}
-                        precision={2}
-                        valueStyle={{ color: '#cf1322' }}
-                        prefix={<ArrowDownOutlined />}
-                        suffix="%"
+            <Col span={7}>
+                <div className='dashboard-card notification'>
+                    <div className='noti-header center-y'>
+                        <MdNotifications className='fz-18' />
+                        <strong className='mt-1 ms-5'>Notification</strong>
+                    </div>
+                    <List
+                        itemLayout="horizontal"
+                        dataSource={data}
+                        renderItem={(item) => (
+                            <List.Item>
+                                <List.Item.Meta
+                                    title={<a href="https://ant.design">{item.title}</a>}
+                                    description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                                />
+                            </List.Item>
+                        )}
                     />
-                </Card>
+                </div>
             </Col>
-            <Col span={12}>
-                <Countdown title="Countdown" value={deadline} onFinish={onFinish} />
-            </Col>
-            <Col span={12}>
-                <Countdown title="Million Seconds" value={deadline} format="HH:mm:ss:SSS" />
-            </Col>
-            <Col span={24} style={{ marginTop: 32 }}>
-                <Countdown title="Day Level" value={deadline} format="D 天 H 时 m 分 s 秒" />
-            </Col>
-            <Col span={12}>
-                <Countdown title="Countdown" value={Date.now() + 10 * 1000} onChange={onChange} />
-            </Col>
-        </Row>
+        </Row >
     );
 };
 

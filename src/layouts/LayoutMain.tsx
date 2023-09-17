@@ -4,9 +4,10 @@ import {
     MenuUnfoldOutlined,
     UserOutlined
 } from '@ant-design/icons';
-import { Avatar, Button, Layout, Menu, MenuProps, theme } from 'antd';
+import { Avatar, Button, Drawer, Layout, Menu, MenuProps, theme } from 'antd';
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
+import { useDisclose } from '~/hooks';
 import "./layout.scss";
 
 const { Header, Sider, Content } = Layout;
@@ -29,28 +30,29 @@ function getItem(
     } as MenuItem;
 }
 
-
 const items: MenuProps['items'] = [
-
-    getItem('Group', 'g312312rp', null, [getItem('Navigation One', 'sub1', <MailOutlined />, [
-        getItem('Item 1', 'g1', null, [getItem('Option 1', '1'), getItem('Option 2', '2')], 'group'),
-        getItem('Item 2', 'g2', null, [getItem('Option 3', '3'), getItem('Option 4', '4')], 'group'),
-    ]), getItem('Navigation One', 'sub2341', <MailOutlined />, [
-        getItem('Item 1', 'g142', null, [getItem('Option 1', '422341'), getItem('Option 2', '4234232')], 'group'),
-        getItem('Item 2', 'g42332', null, [getItem('Option 3', '424233'), getItem('Option 4', '2344')], 'group'),
-    ]),], 'group'),
-
-    getItem('Navigation Two', 'sub2', null, [
-        getItem('Option 5', '5'),
-        getItem('Option 6', '6'),
-        getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
+    getItem('Overview', 'g312312rp', null, [
+        getItem('Navigation One', 'sub1', <MailOutlined />,
+            [
+                getItem(<Link to="/">Dashboard</Link>, '1'),
+                getItem(<Link to="/task">Task</Link>, '2213'),
+                getItem(<Link to="/todo">Todo</Link>, '212'),
+                getItem(<Link to="/mail">Mail</Link>, '2222')
+            ]),
+        getItem('Management', 'sub2341', <MailOutlined />, [
+            getItem(<Link to="/mana/users">Users</Link>, '422341'),
+            getItem('Option 2', '4234232')
+        ]),
+        getItem('App', 'ds', <MailOutlined />, [
+            getItem(<Link to="/app/images">Images</Link>, 'dqw'),
+        ]),
     ], 'group'),
 
-    getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
 ];
 
 const LayoutMain: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
+    const { isOpen, onClose, onOpen } = useDisclose();
 
     const {
         token: { colorBgContainer },
@@ -64,7 +66,7 @@ const LayoutMain: React.FC = () => {
         <Layout className='vh-100'>
             <Sider trigger={null} collapsible collapsed={collapsed} width={230}>
                 <div className="ns-logo">
-                    Nal Stack
+                    N6
                 </div>
                 <Menu
                     onClick={onClick}
@@ -75,8 +77,8 @@ const LayoutMain: React.FC = () => {
                     items={items}
                 />
             </Sider>
-            <Layout>
-                <Header style={{ padding: 0, background: colorBgContainer }} className='center-y space-between ps-20'>
+            <Layout >
+                <Header style={{ padding: 0, background: colorBgContainer }} className='center-y space-between pe-20'>
                     <Button
                         type="text"
                         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -87,14 +89,16 @@ const LayoutMain: React.FC = () => {
                             height: 64,
                         }}
                     />
-                    <Avatar size={40} icon={<UserOutlined />} />
+                    <Avatar size={40} icon={<UserOutlined />} onClick={onOpen} />
+                    <Drawer title="Hung Tran" placement="right" onClose={onClose} open={isOpen}>
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
+                    </Drawer>
                 </Header>
                 <Content
                     style={{
-                        margin: '24px 16px',
-                        padding: 24,
-                        minHeight: 280,
-                        background: colorBgContainer,
+                        padding: 20,
                     }}
                 >
                     <Outlet />

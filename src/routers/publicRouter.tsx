@@ -1,27 +1,16 @@
 import { RouteObject } from 'react-router-dom';
-import { LayoutMain } from '~/layouts';
+import { routersConfig } from '~/configs';
+import LoginPage from '~/features/auth/page/LoginPage';
+import SignInPage from '~/features/auth/page/SignInPage';
 
 const publicRouter: RouteObject[] | any = [
     {
-        element: <LayoutMain />,
-        children: [
-            // {
-            //     element: <Login />,
-            //     path: configs.routes.login,
-            // },
-            // {
-            //     element: <TwoFactor />,
-            //     path: configs.routes.twoFactor,
-            // },
-            // {
-            //     element: <ForgotPassword />,
-            //     path: configs.routes.forgotPassword,
-            // },
-            // {
-            //     element: <NewPassword />,
-            //     path: configs.routes.newPassword,
-            // },
-        ],
+        element: <SignInPage />,
+        path: routersConfig.signIn,
+    },
+    {
+        element: <LoginPage />,
+        path: routersConfig.login,
     },
 ];
 
